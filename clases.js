@@ -35,20 +35,20 @@ class ficha00 {
 }
 
 class ficha01 {
-    constructor(){
-        this.top = 0
-        this.bottom = 1
+    constructor(top,bottom){       
+        this.top = top
+        this.bottom = bottom
         this.x
         this.y
         this.width = 25
         this.height = 50
         this.img = new Image();
-        this.img.src = "C:/Users/yolal/OneDrive/Escritorio/IRONHACK/6TA_SEMANA/Juego/ficha01.jpg"
+        this.img.src = `C:/Users/yolal/OneDrive/Escritorio/IRONHACK/6TA_SEMANA/Juego/01.png`
         this.img.onload = () => {
             this.draw()
         }
     }
-    draw(){
+    draw(){ 
         ctx.drawImage(this.img,this.x,this.y,this.width,this.height)
     }
 }
@@ -292,6 +292,25 @@ class ficha44 {
         this.height = 50
         this.img = new Image();
         this.img.src = "C:/Users/yolal/OneDrive/Escritorio/IRONHACK/6TA_SEMANA/Juego/44.png"
+        this.img.onload = () => {
+            this.draw()
+        }
+    }
+    draw(){
+        ctx.drawImage(this.img,this.x,this.y,this.width,this.height)
+    }
+}
+
+class ficha {
+    constructor(top,bottom){       
+        this.top = top
+        this.bottom = bottom
+        this.x
+        this.y
+        this.width = 25
+        this.height = 50
+        this.img = new Image();
+        this.img.src = `C:/Users/yolal/OneDrive/Escritorio/IRONHACK/6TA_SEMANA/Juego/${top}${bottom}.png`
         this.img.onload = () => {
             this.draw()
         }

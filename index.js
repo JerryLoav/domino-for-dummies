@@ -43,20 +43,20 @@ const fichasRandom = () =>
         fichasJugador2.push(fichasTotal[indexRandom])
         fichasTotal.splice(indexRandom,1)
      }
-     cabeza= fichasTotal[0][0]
-     cola= fichasTotal [0][1]
+     //cabeza= fichasTotal[0][0]
+     //cola= fichasTotal [0][1]
 }
 
-const confirmacionDeFichaInicial = () =>{
-    let ladoIzquierdo = fichasTotal [0]
-    let ladoDerecho = fichasTotal[1]
-    for (let i = 0; i < fichasJugador1.length; i++) {
-        if (fichasJugador1.includes(ladoIzquierdo) || fichasJugador1.includes(ladoDerecho)){
-            return true
-        }
+//const confirmacionDeFichaInicial = () =>{
+ //   let ladoIzquierdo = fichasTotal [0
+   // let ladoDerecho = fichasTotal[1]
+    //for (let i = 0; i < fichasJugador1.length; i++) {
+        //if (fichasJugador1.includes(ladoI<zquierdo) || fichasJugador1.includes(ladoDerecho)){
+          //  return true
+        //}
         
-    }
-}
+    //}
+//}
 
 
 
@@ -64,32 +64,36 @@ const confirmacionDeFichaInicial = () =>{
     ctx.clearRect(0,0,canvas.width,canvas.height)
  }
 
- function startGame(){
-    if(!requestID){
-        requestID = requestAnimationFrame(fichasRandom)
-        console.log(fichasJugador1)
-        console.log(fichasJugador2)
-        console.log(fichasTotal)
-    }
- }
+ //function updateGame(){
+   // clearCnavas()
+    //console.log(arregloClasesJ1)
+    //arregloClasesJ1.forEach(ficha=>{
+      //  console.log("consolo log ficha",ficha)
+   //     ficha.draw()} )
+    //fondo.draw()
+    //if(requestID){
+        //requestID = requestAnimationFrame(updateGame)
+    //      }
+    
+ //}
 
- function posicionarFichaSeleccionada(ficha, cabeza, cola){
+ function posicionarFichaSeleccionada(fichaMula0, cabeza, cola){
     
     if (cabeza === cola) {
         console.log("En que lugar quieres poner la ficha")
         return
     }
     
-    if (ficha.includes(cabeza)){
+    if (fichaMula0.includes(cabeza)){
         console.log(fichasTotal, '+++++++------')
-        fichasTotal.push(ficha)
-        console.log("coincidió con la cabeza", ficha)
+        fichasTotal.unshift(fichaMula0)
+        console.log("coincidió con la cabeza", fichaMula0)
         console.log(fichasTotal, '-----------')
         return
     }
-    if(ficha.includes(cola)){
+    if(fichaMula0.includes(cola)){
         
-        fichasTotal.push(ficha)
+        fichasTotal.push(fichaMula0)
         console.log("coincidió con la cola")
         return
     }
@@ -97,5 +101,19 @@ const confirmacionDeFichaInicial = () =>{
     
  }
 
- startGame()
- posicionarFichaSeleccionada([0,0],0,2)
+ //startGame()
+// 
+function startGame() {
+    
+    if(!requestID) {
+        fichasRandom()
+       // posicionarFichaSeleccionada([0,0],0,2)
+       // requestID = requestAnimationFrame(updateGame)
+        console.log(fichasJugador1);
+        console.log(fichasJugador2);
+        console.log(fichasTotal)
+    }
+}
+window.onload = () => {
+    startGame();
+}
