@@ -5,7 +5,7 @@ class Background {
         this.width = canvas.width
         this.height = canvas.height
         this.img = new Image();
-        this.img.src = "C:/Users/yolal/OneDrive/Escritorio/IRONHACK/6TA_SEMANA/Juego/background.jpg"
+        this.img.src = "background.jpg"
         this.img.onload = () => {
             this.draw()
         }
@@ -24,7 +24,7 @@ class ficha {
         this.width = 25
         this.height = 50
         this.img = new Image();
-        this.img.src = `C:/Users/yolal/OneDrive/Escritorio/IRONHACK/6TA_SEMANA/Juego/${top}${bottom}.png`
+        this.img.src = `${top}${bottom}.png`
         this.img.onload = () => {
             this.draw()
         }
