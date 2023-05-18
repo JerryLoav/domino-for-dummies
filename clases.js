@@ -15,7 +15,26 @@ class Background {
     }
 }
 
-class ficha00 {
+class ficha {
+    constructor(top,bottom){       
+        this.top = top
+        this.bottom = bottom
+        this.x
+        this.y
+        this.width = 25
+        this.height = 50
+        this.img = new Image();
+        this.img.src = `C:/Users/yolal/OneDrive/Escritorio/IRONHACK/6TA_SEMANA/Juego/${top}${bottom}.png`
+        this.img.onload = () => {
+            this.draw()
+        }
+    }
+    draw(){
+        ctx.drawImage(this.img,this.x,this.y,this.width,this.height)
+    }
+}
+
+/*class ficha00 {
     constructor(){
         this.top = 0
         this.bottom = 0
@@ -27,10 +46,12 @@ class ficha00 {
         this.img.src = "C:/Users/yolal/OneDrive/Escritorio/IRONHACK/6TA_SEMANA/Juego/00.png"
         this.img.onload = () => {
             this.draw()
+            
         }
     }
     draw(){
         ctx.drawImage(this.img,this.x,this.y,this.width,this.height)
+        //ctx.rotate(90)
     }
 }
 
@@ -299,4 +320,4 @@ class ficha44 {
     draw(){
         ctx.drawImage(this.img,this.x,this.y,this.width,this.height)
     }
-}
+}*/

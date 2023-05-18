@@ -35,7 +35,7 @@ const fichasRandom = () =>
     let indexRandom 
     for (let i = 0; i < 7; i++) {
         indexRandom = Math.floor(Math.random()*fichasTotal.length)
-        fichasJugador1.push(fichasTotal[indexRandom])
+        fichasJugador1.unshift(fichasTotal[indexRandom])
         fichasTotal.splice(indexRandom,1)
      }
      for (let j = 0; j < 7; j++) {
@@ -64,38 +64,13 @@ const confirmacionDeFichaInicial = () =>{
     ctx.clearRect(0,0,canvas.width,canvas.height)
  }
 
- function startGame(){
-    if(!requestID){
-        requestID = requestAnimationFrame(fichasRandom)
-        console.log(fichasJugador1)
-        console.log(fichasJugador2)
-        console.log(fichasTotal)
-    }
- }
-
- function posicionarFichaSeleccionada(ficha, cabeza, cola){
-    
-    if (cabeza === cola) {
-        console.log("En que lugar quieres poner la ficha")
-        return
-    }
-    
-    if (ficha.includes(cabeza)){
-        console.log(fichasTotal, '+++++++------')
-        fichasTotal.push(ficha)
-        console.log("coincidió con la cabeza", ficha)
-        console.log(fichasTotal, '-----------')
-        return
-    }
-    if(ficha.includes(cola)){
-        
-        fichasTotal.push(ficha)
-        console.log("coincidió con la cola")
-        return
-    }
-    
+ async function startGame(){
+    await fichasRandom()
+        console.log("fichas jugador 1 cuando inicia el juego ",fichasJugador1.length)
+        console.log("fichas jugador 2 cuando inicia el juego ",fichasJugador2.length)
+        console.log("fichas tablero cuando inicia el juego ",fichasTotal.length)
     
  }
 
- startGame()
- posicionarFichaSeleccionada([0,0],0,2)
+
+    startGame();
