@@ -1,76 +1,166 @@
-const canvas = document.querySelector("canvas")
-const ctx = canvas.getContext("2d")
-let canvasLeft = canvas.offsetLeft
-let canvasTop = canvas.offsetTop
-let turno=1
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+let canvasLeft = canvas.offsetLeft;
+let canvasTop = canvas.offsetTop;
+let turno = 1;
 
-let fichasTotal = 
-[
-    [0,0], 
-    [0,1],
-    [0,2],
-    [0,3],
-    [0,4],
-    [1,1],
-    [1,2],
-    [1,3],
-    [1,4],
-    [2,2],
-    [2,3],
-    [2,4],
-    [3,3],
-    [3,4],
-    [4,4]
-]
+const fichasTotalv2 = [
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 0,
+    bottom: 0,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 0,
+    bottom: 1,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 0,
+    bottom: 2,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 0,
+    bottom: 3,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 0,
+    bottom: 4,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 1,
+    bottom: 1,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 1,
+    bottom: 2,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 1,
+    bottom: 3,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 1,
+    bottom: 4,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 2,
+    bottom: 2,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 2,
+    bottom: 3,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 2,
+    bottom: 4,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 3,
+    bottom: 3,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 3,
+    bottom: 4,
+  },
+  {
+    x: null,
+    y: null,
+    xFinal: null,
+    yFinal: null,
+    top: 4,
+    bottom: 4,
+  },
+];
 
-let fichasJugador1 = []
-let fichasJugador2 = []
-let fichaDomino
-let requestID
-let cabeza
-let cola
+const fichasJugador1 = [];
+const fichasJugador2 = [];
+const fichasTablero = [];
+let cabeza;
+let cola;
 
-const fichasRandom = () => 
-{
-    let indexRandom 
-    for (let i = 0; i < 7; i++) {
-        indexRandom = Math.floor(Math.random()*fichasTotal.length)
-        fichasJugador1.unshift(fichasTotal[indexRandom])
-        fichasTotal.splice(indexRandom,1)
-     }
-     for (let j = 0; j < 7; j++) {
-        indexRandom = Math.floor(Math.random()*fichasTotal.length)
-        fichasJugador2.push(fichasTotal[indexRandom])
-        fichasTotal.splice(indexRandom,1)
-     }
-     cabeza= fichasTotal[0][0]
-     cola= fichasTotal [0][1]
-}
+const revolver = (arrayOriginal) => {
+  return arrayOriginal
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+};
 
-const confirmacionDeFichaInicial = () =>{
-    let ladoIzquierdo = fichasTotal [0]
-    let ladoDerecho = fichasTotal[1]
-    for (let i = 0; i < fichasJugador1.length; i++) {
-        if (fichasJugador1.includes(ladoIzquierdo) || fichasJugador1.includes(ladoDerecho)){
-            return true
-        }
-        
+const fichasRandom = () => {
+  const sopa = revolver(fichasTotalv2);
+  sopa.map((ficha) => {
+    if (fichasTablero.length === 0) {
+      fichasTablero.push(ficha);
+    } else if (fichasJugador1.length === fichasJugador2.length) {
+      fichasJugador1.push(ficha);
+    } else if (fichasJugador1.length > fichasJugador2.length) {
+      fichasJugador2.push(ficha);
     }
+  });
+  cabeza = fichasTablero[0].top;
+  cola = fichasTablero[0].bottom;
+};
+
+function clearCnavas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+async function startGame() {
+  await fichasRandom();
+}
 
-
- function clearCnavas(){
-    ctx.clearRect(0,0,canvas.width,canvas.height)
- }
-
- async function startGame(){
-    await fichasRandom()
-        console.log("fichas jugador 1 cuando inicia el juego ",fichasJugador1.length)
-        console.log("fichas jugador 2 cuando inicia el juego ",fichasJugador2.length)
-        console.log("fichas tablero cuando inicia el juego ",fichasTotal.length)
-    
- }
-
-
-    startGame();
+startGame();

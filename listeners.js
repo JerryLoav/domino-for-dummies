@@ -1,120 +1,128 @@
+canvas.addEventListener("click", (e) => {
+  let x = e.pageX - canvasLeft;
+  let y = e.pageY - canvasTop;
 
-canvas.addEventListener("click", e =>{
-    let x = e.pageX -canvasLeft
-    let y = e.pageY - canvasTop
-    console.log("soy las coordenadas ",x, y)
-    if(turno % 2 === 1){
-    arregloClasesJ1.forEach(function(ficha,i){
-        if (y > ficha.y && y < ficha.yFinal && x > ficha.x && x < ficha.xFinal){
-            if([cabeza,cola].includes(ficha.top )|| [cabeza,cola].includes(ficha.bottom)){
-                if(cabeza === cola){
-                    console.log("En donde quieres poner la ficha")
-                }
-            console.log("le di clik a una ficha", ficha, i)}
-            ordenFichaJ1(ficha,i)
-            clearCnavas()
-            imprimirFichas()
-            turno ++
-        }
-    })}
-    else if (turno % 2 === 0){
-        arregloClasesJ2.forEach(function(ficha,i){
-            if (y > ficha.y && y < ficha.yFinal && x > ficha.x && x < ficha.xFinal){
-                if([cabeza,cola].includes(ficha.top )|| [cabeza,cola].includes(ficha.bottom)){
-                    if(cabeza === cola){
-                        console.log("En donde quieres poner la ficha")
-                    }
-                console.log("le di clik a una ficha", ficha, i)}
-                ordenFichaJ2(ficha,i)
-                clearCnavas()
-                imprimirFichas()
-                turno ++
+  fichasJugador1.forEach((ficha, i) => {
+    if (y > ficha.y && y < ficha.yFinal && x > ficha.x && x < ficha.xFinal) {
+      if (turno % 2 !== 0) {
+        if (
+          [cabeza, cola].includes(ficha.top) ||
+          [cabeza, cola].includes(ficha.bottom)
+        ) {
+          if (cabeza === cola) {
+            const posicion = prompt("En donde quieres poner la ficha?");
+            if (posicion === "arriba") {
+              fichasJugador1.splice(i, 1);
+              fichasTablero.unshift(ficha);
+              cabeza = ficha.top === cabeza ? ficha.bottom : ficha.top;
+
+              clearCnavas();
+              imprimirFichas();
+              turno++;
+              return;
+            } else {
+              fichasJugador1.splice(i, 1);
+              fichasTablero.push(ficha);
+              cola = ficha.bottom === cola ? ficha.top : ficha.bottom;
+
+              clearCnavas();
+              imprimirFichas();
+              turno++;
+
+              return;
             }
-        })
+          }
+          ordenFicha(ficha, i, fichasJugador1);
+        }
+      } else {
+        alert("es el turno del jugador 2");
+      }
+    }
+  });
 
-    }
-}) 
+  fichasJugador2.forEach((ficha, i) => {
+    if (y > ficha.y && y < ficha.yFinal && x > ficha.x && x < ficha.xFinal) {
+      if (turno % 2 === 0) {
+        if (
+          [cabeza, cola].includes(ficha.top) ||
+          [cabeza, cola].includes(ficha.bottom)
+        ) {
+          if (cabeza === cola) {
+            const posicion = prompt("En donde quieres poner la ficha?");
+            if (posicion === "arriba") {
+              fichasJugador2.splice(i, 1);
+              fichasTablero.unshift(ficha);
+              cabeza = ficha.top === cabeza ? ficha.bottom : ficha.top;
 
-const ordenFichaJ1 = (ficha,index) => {
-    //console.log("ficha",ficha)
-    if((ficha.top === (cabeza) && ficha.bottom === (cola))||(ficha.top === (cola) && ficha.bottom===(cabeza))){
-        console.log("En donde quieres poner la ficha")}
-    else if(ficha.top=== (cabeza)){            //funciona bien
-        //console.log("coincido con cabeza")
-        fichasTotal.unshift(fichasJugador1[index])
-        arregloTablero.unshift(arregloClasesJ1[index])
-        fichasJugador1.splice(index,1)
-        arregloClasesJ1.splice(index,1)
-        //console.log("fichsas total orden ficha", fichasTotal)
-        //console.log("fichas jugador 1 ", fichasJugador1)
-        cabeza = ficha.bottom
-        //console.log("soy cabeza ",cabeza)
-    }
-    else if(ficha.bottom === (cola)){                 
-        // console.log("coincido con cola")
-        fichasTotal.push(fichasJugador1[index])
-        arregloTablero.unshift(arregloClasesJ1[index])
-        arregloClasesJ1.splice(index,1)
-        fichasJugador1.splice(index,1)
-        //console.log("fichsas total orden ficha", fichasTotal)
-        //console.log("fichas jugador 1 ",fichasJugador1)
-        cola = ficha.top
-        //console.log("soy cola ",cola)
-    }
-    else if (ficha.top ===cola){     // funciona bien
-        fichasTotal.push(fichasJugador1[index])
-        arregloTablero.push(arregloClasesJ1[index])
-        arregloClasesJ1.splice(index,1)
-        fichasJugador1.splice(index,1)
-        cola = ficha.bottom
-    }
-    else if(ficha.bottom === cabeza){      // funciona bien
-        fichasTotal.unshift(fichasJugador1[index])
-        arregloTablero.unshift(arregloClasesJ1[index])
-        arregloClasesJ1.splice(index,1)
-        fichasJugador1.splice(index,1)
-        cabeza = ficha.top
-    }
-}
+              clearCnavas();
+              imprimirFichas();
+              turno++;
+              return;
+            } else {
+              fichasJugador2.splice(i, 1);
+              fichasTablero.push(ficha);
+              cola = ficha.bottom === cola ? ficha.top : ficha.bottom;
 
-const ordenFichaJ2 = (ficha,index) => {
-    //console.log("ficha",ficha)
-    if((ficha.top === (cabeza) && ficha.bottom === (cola))||(ficha.top === (cola) && ficha.bottom===(cabeza))){
-        console.log("En donde quieres poner la ficha")}
-    else if(ficha.top=== (cabeza)){            //funciona bien
-        //console.log("coincido con cabeza")
-        fichasTotal.unshift(fichasJugador2[index])
-        arregloTablero.unshift(arregloClasesJ2[index])
-        fichasJugador2.splice(index,1)
-        arregloClasesJ2.splice(index,1)
-        //console.log("fichsas total orden ficha", fichasTotal)
-        //console.log("fichas jugador 1 ", fichasJugador1)
-        cabeza = ficha.bottom
-        //console.log("soy cabeza ",cabeza)
+              clearCnavas();
+              imprimirFichas();
+              turno++;
+
+              return;
+            }
+          }
+          ordenFicha(ficha, i, fichasJugador2);
+        }
+      } else {
+        alert("es el turno del jugador 1");
+      }
     }
-    else if(ficha.bottom === (cola)){                 
-        // console.log("coincido con cola")
-        fichasTotal.push(fichasJugador2[index])
-        arregloTablero.unshift(arregloClasesJ2[index])
-        arregloClasesJ2.splice(index,1)
-        fichasJugador2.splice(index,1)
-        //console.log("fichsas total orden ficha", fichasTotal)
-        //console.log("fichas jugador 1 ",fichasJugador1)
-        cola = ficha.top
-        //console.log("soy cola ",cola)
-    }
-    else if (ficha.top ===cola){     // funciona bien
-        fichasTotal.push(fichasJugador2[index])
-        arregloTablero.push(arregloClasesJ2[index])
-        arregloClasesJ2.splice(index,1)
-        fichasJugador2.splice(index,1)
-        cola = ficha.bottom
-    }
-    else if(ficha.bottom === cabeza){      // funciona bien
-        fichasTotal.unshift(fichasJugador2[index])
-        arregloTablero.unshift(arregloClasesJ2[index])
-        arregloClasesJ2.splice(index,1)
-        fichasJugador2.splice(index,1)
-        cabeza = ficha.top
-    }
-}
+  });
+});
+
+const ordenFicha = (ficha, index, array) => {
+  if (ficha.top === cabeza && ficha.bottom === cola) {
+    console.log("En donde quieres poner la ficha");
+    return;
+  } else if (ficha.top === cabeza) { 
+    array.splice(index, 1);
+    fichasTablero.unshift(ficha);
+    cabeza = ficha.bottom;
+    clearCnavas();
+    ficha.angle = 180
+    console.log ("soy ficha ",ficha)
+    imprimirFichas(180, ficha);
+    turno++;
+    
+    return;
+  } else if (ficha.bottom === cola) {
+    array.splice(index, 1);
+    fichasTablero.push(ficha); 
+    cola = ficha.top;
+    clearCnavas();
+    ficha.angle = 180
+    console.log ("soy ficha ", ficha)
+    imprimirFichas(180, ficha);
+    turno++;
+    
+    return;
+  } else if (ficha.top === cola) {
+    array.splice(index, 1);
+    fichasTablero.push(ficha);
+    cola = ficha.bottom;
+
+    clearCnavas();
+    imprimirFichas();
+    turno++;
+    return;
+  } else {
+    array.splice(index, 1);
+    fichasTablero.unshift(ficha);
+    cabeza = ficha.top;
+
+    clearCnavas();
+    imprimirFichas();
+    turno++;
+    return;
+  }
+};
+
