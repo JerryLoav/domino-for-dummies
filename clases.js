@@ -26,8 +26,6 @@ class ficha {
     this.height = 50;
     this.img = new Image();
 
-console.log('this.rotado', this.rotado);
-
     this.img.src = `./${this.rotado ? bottom : top}${this.rotado ? top : bottom}.png`;
     this.img.onload = () => {
             ctx.drawImage(this.img, this.x, this.y,this.width,this.height)
