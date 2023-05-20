@@ -1,6 +1,12 @@
 function imprimirFichas(angulo, fichaTablero) {
   new Background();
+  if (fichasJugador1.length===0) {
+    alert("Jugador 1 gana")
+  }
+  if(fichasJugador2.length===0){
+    alert("Jugador 2 gana")
 
+  }
   for (let i = 0; i < fichasJugador1.length; i++) {
     const fichaP1 = new ficha(fichasJugador1[i].top, fichasJugador1[i].bottom);
 

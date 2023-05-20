@@ -1,17 +1,40 @@
 body,
 html {
-    width: 100vw;
-    height: 100vh;
+   width: 100vw;
+   height: 100vh;
 }
 
-dody{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    margin: 0;
-} 
+body{
+   display: flex;
+   justify-content: center;
+   align-content: center;
+   flex-wrap: wrap;
+   margin: 0;
+   font-family: 'Roboto';
+}
 
 canvas{
-    border: 2px solid red;
+   border-radius: .5em;
+}
+
+.pasar-boton{
+   margin-bottom: 2em;
+   border-radius: .25em;
+   padding: .5em 3em;
+}
+
+.contenedor-tablero{
+   display: flex;
+   flex-direction: column;
+
+}
+
+.contenedor-juego{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+
+.contenedor-juego h2{
+   margin: 1em 2em;
 }

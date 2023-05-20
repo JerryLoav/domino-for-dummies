@@ -80,10 +80,7 @@ canvas.addEventListener("click", (e) => {
 });
 
 const ordenFicha = (ficha, index, array) => {
-  if (ficha.top === cabeza && ficha.bottom === cola) {
-    console.log("En donde quieres poner la ficha");
-    return;
-  } else if (ficha.top === cabeza) { 
+ if (ficha.top === cabeza) { 
     array.splice(index, 1);
     fichasTablero.unshift(ficha);
     cabeza = ficha.bottom;
@@ -126,3 +123,6 @@ const ordenFicha = (ficha, index, array) => {
   }
 };
 
+const pasarTurno = () => {
+  turno++
+ }

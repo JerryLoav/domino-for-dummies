@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Domino for dummies</title>
+   <link rel="stylesheet" href="style.css">
+   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <canvas width="1000" height="700"></canvas>
-    <script src="index.js"></script>
-    <script src="clases.js"></script>
-    <script src="instances.js"></script>
-    <script src="listeners.js"></script>
+<div>
+
+</div>
+<div class="contenedor-juego">
+   <h2>Jugador 1</h2>
+   <div class="contenedor-tablero">
+      <div>
+         <button class="pasar-boton" onclick="pasarTurno()"> Pasar turno</button>
+      </div>
+
+      <canvas width="1000" height="700"></canvas>
+   </div>
+   <h2>Jugador 2</h2>
+</div>
+
+   <script src="index.js"></script>
+   <script src="clases.js"></script>
+   <script src="instances.js"></script>
+   <script src="listeners.js"></script>
 </body>
 </html>
